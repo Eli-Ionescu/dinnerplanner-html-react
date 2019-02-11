@@ -1,4 +1,5 @@
 import ObservableModel from "./ObservableModel";
+import API_KEY from "./apiKey";
 
 const BASE_URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com";
 const httpOptions = {
