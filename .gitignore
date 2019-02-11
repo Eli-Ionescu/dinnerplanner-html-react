@@ -19,3 +19,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# WebStorm files
+.idea
+
+# API key
+/src/data/apiKey.js
