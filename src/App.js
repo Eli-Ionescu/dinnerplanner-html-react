@@ -4,7 +4,7 @@ import Welcome from "./Welcome/Welcome";
 import modelInstance from "./data/DinnerModel";
 import SelectDish from "./SelectDish/SelectDish";
 import "./App.css";
-import DishOverview from "./DishOverview/DishOverview";
+import DinnerOverview from "./DinnerOverview/DinnerOverview";
 
 class App extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class App extends Component {
           />
           <Route
               path="/dishOverview"
-              render={() => <DishOverview model={modelInstance} />}
+              render={() => <DinnerOverview model={modelInstance} />}
           />
         </header>
       </div>
