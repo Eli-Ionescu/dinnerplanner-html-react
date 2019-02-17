@@ -25,7 +25,8 @@ class Dishes extends Component {
       .then(dishes => {
         this.setState({
           status: "LOADED",
-          dishes: dishes.results
+          dishes: dishes.results,
+          uri: dishes.baseUri
         });
       })
       .catch(() => {
@@ -47,7 +48,14 @@ class Dishes extends Component {
         break;
       case "LOADED":
         dishesList = this.state.dishes.map(dish => (
-          <li key={dish.id}>{dish.title}</li>
+          <div key={dish.id} className="col-md-2 dishItem">
+              <a>
+                  <img className="img-thumbnail" src={this.state.uri + dish.image} alt={dish.title}/>
+                      <div align="center" className="caption">
+                          <p>{dish.title}</p>
+                      </div>
+              </a>
+          </div>
         ));
         break;
       default:
@@ -58,7 +66,7 @@ class Dishes extends Component {
     return (
       <div className="Dishes">
         <h3>Dishes</h3>
-        <ul>{dishesList}</ul>
+        <div className="row">{dishesList}</div>
       </div>
     );
   }
