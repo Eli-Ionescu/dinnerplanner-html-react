@@ -11,13 +11,9 @@ class Welcome extends Component {
         <div className="text-center" id="home">
           <p>Here you can plan your dinner</p>
           <Link to="/search">
-            <button>Start planning</button>
+            <button class="button">Start planning</button>
           </Link>
-          {/*<button className="button" id="newDinnerButton">Create new dinner</button>*/}
         </div>
-        {/*<p>Welcome to the dinner planner React Startup code!</p>*/}
-
-
       </div>
     );
   }

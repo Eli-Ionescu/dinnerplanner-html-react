@@ -8,3 +8,16 @@
 #home {
     padding-top: 100px;
 }
+
+.button {
+    background-color: coral;
+    color: black;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-color: black;
+}
