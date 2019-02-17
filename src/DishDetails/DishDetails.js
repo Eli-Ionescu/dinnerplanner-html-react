@@ -4,6 +4,7 @@ import modelInstance from "../data/DinnerModel";
 import Sidebar from "../Sidebar/Sidebar";
 import DishSearch from "../DishSearch/DishSearch";
 import Dishes from "../Dishes/Dishes";
+import Link from "react-router-dom/es/Link";
 
 class DishDetails extends Component {
     constructor(props) {
@@ -66,7 +67,9 @@ class DishDetails extends Component {
                             <img id="imageDetailsId" className="img-thumbnail" src={this.state.dish.image} alt={this.state.dish.title}/>
                         </div>
                         <p id="dishDescription">{this.state.dish.instructions}</p>
-                        <button className="button" id="buttonBackToSearch">Back to search</button>
+                        <Link to="/search">
+                            <button className="button" id="buttonBackToSearch">Back to search</button>
+                        </Link>
                     </div>);
                 ingredientsTable = this.createIngredientsList();
                 break;
