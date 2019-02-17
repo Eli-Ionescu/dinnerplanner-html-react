@@ -39,7 +39,7 @@ class Sidebar extends Component {
 
   render() {
     return (
-          <div className="col-md-3" id="sidebar">
+          <div className="Sidebar">
             <div id="row" id="sidebarHeader">
               <h3 className="col-xs-4">My Dinner</h3>
               <div id="button_collapse" className="hidden-sm-up col-xs-4">
