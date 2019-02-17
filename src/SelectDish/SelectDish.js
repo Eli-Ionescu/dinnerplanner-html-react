@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import Dishes from "../Dishes/Dishes";
 import DishSearch from "../DishSearch/DishSearch"
-import "./SelectDish.css";
 
 class SelectDish extends Component {
   render() {

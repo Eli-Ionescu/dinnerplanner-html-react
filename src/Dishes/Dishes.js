@@ -2,7 +2,6 @@ import React, { Component } from "react";
 // Alternative to passing the model as the component property,
 // we can import the model instance directly
 import modelInstance from "../data/DinnerModel";
-import "./Dishes.css";
 import Link from "react-router-dom/es/Link";
 
 class Dishes extends Component {

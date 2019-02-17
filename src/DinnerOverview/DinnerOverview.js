@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./DinnerOverview.css";
 import {Link} from "react-router-dom";
 import DinnerListOverview from "../DinnerListOverview/DinnerListOverview";
 import TopBar from "../TopBar/TopBar";

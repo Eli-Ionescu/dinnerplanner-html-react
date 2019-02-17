@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./DinnerListOverview.css";
 
 class DinnerListOverview extends Component {
     constructor(props) {

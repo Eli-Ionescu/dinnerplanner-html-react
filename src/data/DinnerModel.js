@@ -40,7 +40,7 @@ class DinnerModel extends ObservableModel {
    * @returns {Promise<any>}
    */
   getAllDishes() {
-    const url = `${BASE_URL}/recipes/search`;
+    const url = `${BASE_URL}/recipes/search?number=30`;
     return fetch(url, httpOptions).then(this.processResponse);
   }
 
