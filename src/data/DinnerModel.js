@@ -1,7 +1,7 @@
 import ObservableModel from "./ObservableModel";
 import API_KEY from "./apiKey";
 
-const BASE_URL = "http://sunset.nada.kth.se:8080/iprog/group/45"
+const BASE_URL = "http://sunset.nada.kth.se:8080/iprog/group/45";
 const httpOptions = {
   headers: { "X-Mashape-Key": API_KEY }
 };
@@ -41,6 +41,10 @@ class DinnerModel extends ObservableModel {
     return fetch(url, httpOptions).then(this.processResponse);
   }
 
+  getAllDishTypes() {
+    return dishTypes;
+  }
+
   processResponse(response) {
     if (response.ok) {
       return response.json();
@@ -48,6 +52,9 @@ class DinnerModel extends ObservableModel {
     throw response;
   }
 }
+
+const dishTypes = ["main course", "side dish", "dessert", "appetizer", "salad", "bread",
+    "breakfast", "soup", "beverage", "sauce", "drink"];
 
 // Export an instance of DinnerModel
 const modelInstance = new DinnerModel();
