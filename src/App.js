@@ -4,6 +4,7 @@ import Welcome from "./Welcome/Welcome";
 import modelInstance from "./data/DinnerModel";
 import SelectDish from "./SelectDish/SelectDish";
 import "./App.css";
+import DinnerOverview from "./DinnerOverview/DinnerOverview";
 
 class App extends Component {
   constructor(props) {
@@ -19,11 +20,15 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">{this.state.title}</h1>
 
-          {/* We rended diffrent component based on the path */}
+          {/* We rendered different component based on the path */}
           <Route exact path="/" component={Welcome} />
           <Route
             path="/search"
             render={() => <SelectDish model={modelInstance} />}
+          />
+          <Route
+              path="/dishOverview"
+              render={() => <DinnerOverview model={modelInstance} />}
           />
         </header>
       </div>
