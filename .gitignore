@@ -21,7 +21,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # WebStorm files
-.idea
+/.idea
 
 # API key
 /src/data/apiKey.js
