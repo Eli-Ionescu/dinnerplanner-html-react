@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Sidebar.css";
+import {Link} from "react-router-dom";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -64,9 +65,10 @@ class Sidebar extends Component {
                 </tbody>
               </table>
               <p id="totalPrice"></p>
-              <button align="middle" className="button" id="confirmDinner">
-                Confirm Dinner
-              </button>
+              <Link to="/dishOverview">
+                <button align="middle" className="button" id="confirmDinner">Confirm Dinner</button>
+              </Link>
+
             </div>
           </div>
     );
