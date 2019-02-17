@@ -10,7 +10,7 @@ class DishDetails extends Component {
     }
 
     render() {
-
+        return <div className="DishDetails"> Dish details</div>;
     }
 }
 
