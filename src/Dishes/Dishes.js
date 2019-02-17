@@ -50,7 +50,7 @@ class Dishes extends Component {
       case "LOADED":
         dishesList = this.state.dishes.map(dish => (
           <div key={dish.id} className="col-md-2 dishItem">
-              <Link  to={"/details?id=" + dish.id}>
+              <Link to={"/details?id=" + dish.id}>
                   <img className="img-thumbnail" src={this.state.uri + dish.image} alt={dish.title}/>
                       <div align="center" className="caption">
                           <p>{dish.title}</p>
