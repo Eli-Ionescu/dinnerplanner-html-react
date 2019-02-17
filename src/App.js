@@ -32,8 +32,8 @@ class App extends Component {
               render={() => <DinnerOverview model={modelInstance} />}
           />
           <Route
-              path="/details"
-              render={() => <DishDetails model={modelInstance} />}
+              path="/details/:id"
+              render={(props) => <DishDetails {...props} model={modelInstance} />}
           />
         </header>
       </div>
