@@ -43,9 +43,6 @@ class DetailsInfo extends Component {
                                  alt={this.state.dish.title}/>
                         </div>
                         <p id="dishDescription">{this.state.dish.instructions}</p>
-                        <Link to="/search">
-                            <button className="button" id="buttonBackToSearch">Back to search</button>
-                        </Link>
                     </div>);
                 break;
             default:

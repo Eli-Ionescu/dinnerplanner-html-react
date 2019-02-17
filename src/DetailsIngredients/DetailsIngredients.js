@@ -42,7 +42,6 @@ class DetailsIngredients extends Component {
                     {tableBody}
                     </tbody>
                 </table>
-                <button className="button-add-to-menu" id="buttonAddToMenu">Add to menu</button>
             </div>
         );
     }
