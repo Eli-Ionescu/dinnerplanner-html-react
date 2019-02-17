@@ -11,6 +11,9 @@ class DinnerModel extends ObservableModel {
     super();
     this._numberOfGuests = 4;
     this.getNumberOfGuests();
+
+    this._selectedDishes = [];
+    this.getSelectedDishes();
   }
 
   /**
@@ -50,12 +53,28 @@ class DinnerModel extends ObservableModel {
     return fetch(url, httpOptions).then(this.processResponse);
   }
 
+  getSelectedDishes() {
+      return this._selectedDishes;
+  }
+
+  addDishToMenu(id) {
+    this.getDish(id).then(dish => {
+        this._selectedDishes.push(dish);
+        this.notifyObservers("addDishToMenu");
+    }).catch(error => {
+        console.log(error);
+    });
+  }
+
+
   processResponse(response) {
     if (response.ok) {
       return response.json();
     }
     throw response;
   }
+
+
 }
 
 const dishTypes = ["main course", "side dish", "dessert", "appetizer", "salad", "bread",
