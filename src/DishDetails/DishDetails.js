@@ -4,6 +4,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import DetailsInfo from "../DetailsInfo/DetailsInfo";
 import DetailsIngredients from "../DetailsIngredients/DetailsIngredients";
 import Link from "react-router-dom/es/Link";
+import modelInstance from "../data/DinnerModel";
 
 class DishDetails extends Component {
     constructor(props) {
@@ -12,6 +13,12 @@ class DishDetails extends Component {
             status: "LOADING"
         };
         this.id = props.match.params.id;
+    }
+
+    // Has to be arrow function for binding
+    addDishToMenu = () => {
+        console.log();
+        modelInstance.addDishToMenu(this.id);
     }
 
     render() {
@@ -33,7 +40,7 @@ class DishDetails extends Component {
                                 </div>
                                 <div className="col-md-6">
                                     <DetailsIngredients model={this.props.model} dishId={this.id}/>
-                                    <button className="button-add-to-menu" id="buttonAddToMenu">Add to menu</button>
+                                    <button className="button-add-to-menu" id="buttonAddToMenu" onClick={this.addDishToMenu}>Add to menu</button>
                                 </div>
                             </div>
                         </div>

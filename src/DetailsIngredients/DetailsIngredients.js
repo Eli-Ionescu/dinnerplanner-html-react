@@ -31,7 +31,7 @@ class DetailsIngredients extends Component {
     createIngredientsList () {
         let tableBody = this.state.dish.extendedIngredients.map(ingredient =>
             (<tr>
-                <td> {ingredient.amount * this.state.nrPeople} {ingredient.unit} </td>
+                <td>{ingredient.amount * this.state.nrPeople} {ingredient.unit}</td>
                 <td>{ingredient.name}</td>
             </tr>));
 

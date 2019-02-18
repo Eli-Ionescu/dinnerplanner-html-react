@@ -58,6 +58,7 @@ class DinnerModel extends ObservableModel {
   }
 
   addDishToMenu(id) {
+    console.log(id);
     this.getDish(id).then(dish => {
         this._selectedDishes.push(dish);
         this.notifyObservers("addDishToMenu");

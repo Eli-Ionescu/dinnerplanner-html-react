@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Sidebar.css";
 import {Link} from "react-router-dom";
+import modelInstance from "../data/DinnerModel";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -39,6 +40,12 @@ class Sidebar extends Component {
   };
 
   render() {
+    let selectedDishes = modelInstance.getSelectedDishes().map(dish => (
+        <tr>
+            <td>{dish.title}</td>
+            <td>{this.state.numberOfGuests * dish.pricePerServing}</td>
+        </tr>
+    ));
     return (
           <div className="Sidebar">
             <div className="row" id="sidebarHeader">
@@ -62,6 +69,7 @@ class Sidebar extends Component {
                 </tr>
                 </thead>
                 <tbody id="selectedDishTableBody">
+                {selectedDishes}
                 </tbody>
               </table>
               <p id="totalPrice"></p>
