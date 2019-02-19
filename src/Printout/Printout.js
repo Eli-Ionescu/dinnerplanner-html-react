@@ -10,25 +10,30 @@ class Printout extends Component {
     }
 
     render() {
+        let dishesPrintout = modelInstance.getSelectedDishes().map(dish => (
+            <div id="dinnerItem" className="row">
+                <div className="col-md-2" id="imageContainer">
+                    <img className="img-thumbnail" src={dish.image}/>
+                </div>
+                <div className="col-md-4" id="description">
+                    <h2>{dish.title}</h2>
+                    <p>{dish.instructions}</p>
+                </div>
+                <div className="col-md-6" id="preparation">
+                    <h3>Preparation</h3>
+                    <p>{dish.instructions}</p>
+                </div>
+            </div>
+        ));
+
         return (
             <div className="Printout">
                 <div className="container">
                     <TopBar model={modelInstance} routePath="/dishOverview"/>
                 </div>
                 <hr/>
-
-                <div id="dinnerItem" className="row">
-                    <div className="col-md-2" id="imageContainer">
-                        {/*<img className="img-thumbnail" src="${selectedDishes[i].image}"/>*/}
-                    </div>
-                    <div className="col-md-4" id="description">
-                        {/*<h2>${selectedDishes[i].title}</h2>*/}
-                        {/*<p>${selectedDishes[i].instructions}</p>*/}
-                    </div>
-                    <div className="col-md-6" id="preparation">
-                        <h3>Preparation</h3>
-                        {/*<p>${selectedDishes[i].instructions}</p>*/}
-                    </div>
+                <div className="container" id="printoutList">
+                    {dishesPrintout}
                 </div>
             </div>
         );

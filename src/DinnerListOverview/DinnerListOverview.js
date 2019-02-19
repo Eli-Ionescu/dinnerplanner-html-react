@@ -20,11 +20,16 @@ class DinnerListOverview extends Component {
             </a>
         ));
 
+        let menuTotalPrice = modelInstance.getTotalMenuPrice();
+
         return (
             <div className="DinnerListOverview">
                 <div className="col-md-3">
                     {selectedDishes}
                 </div>
+                {/*<div class="col-md-2 vertical_line">*/}
+                    {/*<p id="total_overview"> Total: <br> {menuTotalPrice} SEK</br></p>*/}
+                {/*</div>*/}
             </div>
         );
     }

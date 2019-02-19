@@ -67,6 +67,13 @@ class DinnerModel extends ObservableModel {
     });
   }
 
+  getTotalMenuPrice() {
+    let total = 0;
+    for (let dish of this._selectedDishes) {
+      total += dish.pricePerServing;
+    }
+    return total * this.numberOfGuests;
+  }
 
   processResponse(response) {
     if (response.ok) {
