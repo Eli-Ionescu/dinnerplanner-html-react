@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import modelInstance from "../data/DinnerModel";
+import "./DinnerListOverview.css"
 
 class DinnerListOverview extends Component {
     constructor(props) {
@@ -27,9 +28,9 @@ class DinnerListOverview extends Component {
                 <div className="col-md-3">
                     {selectedDishes}
                 </div>
-                {/*<div class="col-md-2 vertical_line">*/}
-                    {/*<p id="total_overview"> Total: <br> {menuTotalPrice} SEK</br></p>*/}
-                {/*</div>*/}
+                <div class="col-md-2 vertical_line">
+                    <p id="total_overview"> Total: <br/> {menuTotalPrice} SEK</p>
+                </div>
             </div>
         );
     }
