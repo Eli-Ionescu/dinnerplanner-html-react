@@ -19,9 +19,7 @@ class DinnerOverview extends Component {
                 </div>
                 <hr/>
                 <div className="container">
-                    <div className="row">
-                        <DinnerListOverview/>
-                    </div>
+                    <DinnerListOverview/>
                 </div>
                 <hr/>
                 <div className="text-center">

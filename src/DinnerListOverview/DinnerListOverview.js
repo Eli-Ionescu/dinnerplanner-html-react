@@ -13,23 +13,25 @@ class DinnerListOverview extends Component {
     render() {
 
         let selectedDishes = modelInstance.getSelectedDishes().map(dish => (
-            <a>
-                <img className="img-thumbnail" src={dish.image}/>
-                <div className="caption" id="captionOverview">
-                    <p>{dish.title} {dish.pricePerServing} SEK</p>
+            <div className="col-md-3">
+                <div>
+                    <img className="img-thumbnail" src={dish.image}/>
+                    <div className="caption" id="captionOverview">
+                        <p>{dish.title} {dish.pricePerServing} SEK</p>
+                    </div>
                 </div>
-            </a>
+            </div>
         ));
 
         let menuTotalPrice = modelInstance.getTotalMenuPrice();
 
         return (
             <div className="DinnerListOverview">
-                <div className="col-md-3">
+                <div className="row">
                     {selectedDishes}
-                </div>
-                <div class="col-md-2 vertical_line">
-                    <p id="total_overview"> Total: <br/> {menuTotalPrice} SEK</p>
+                    <div class="col-md-2 vertical_line">
+                        <p id="total_overview"> Total: <br/> {menuTotalPrice} SEK</p>
+                    </div>
                 </div>
             </div>
         );
