@@ -1,6 +1,5 @@
 import modelInstance from "../data/DinnerModel";
 import React, { Component } from "react";
-import Link from "react-router-dom/es/Link";
 
 class DetailsInfo extends Component {
 

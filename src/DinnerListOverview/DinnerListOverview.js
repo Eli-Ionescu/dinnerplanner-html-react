@@ -15,7 +15,7 @@ class DinnerListOverview extends Component {
         let selectedDishes = modelInstance.getSelectedDishes().map(dish => (
             <div className="col-md-3">
                 <div>
-                    <img className="img-thumbnail" src={dish.image}/>
+                    <img className="img-thumbnail" src={dish.image} alt={dish.title}/>
                     <div className="caption" id="captionOverview">
                         <p>{dish.title} {dish.pricePerServing} SEK</p>
                     </div>
