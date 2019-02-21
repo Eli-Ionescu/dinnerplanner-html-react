@@ -15,7 +15,6 @@ class SelectDish extends Component {
                 </div>
                 <div className="col-md-9">
                     <DishSearch />
-                    <Dishes />
                 </div>
               </div>
           </div>

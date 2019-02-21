@@ -17,9 +17,8 @@ class DishDetails extends Component {
 
     // Has to be arrow function for binding
     addDishToMenu = () => {
-        console.log();
         modelInstance.addDishToMenu(this.id);
-    }
+    };
 
     render() {
         return (
