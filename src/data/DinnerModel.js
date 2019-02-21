@@ -69,10 +69,13 @@ class DinnerModel extends ObservableModel {
 
   getTotalMenuPrice() {
     let total = 0;
+
     for (let dish of this._selectedDishes) {
+      console.log(dish.pricePerServing);
       total += dish.pricePerServing;
     }
-    return total * this.numberOfGuests;
+
+    return total * this._numberOfGuests;
   }
 
   processResponse(response) {

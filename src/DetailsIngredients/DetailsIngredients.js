@@ -6,7 +6,8 @@ class DetailsIngredients extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            status: "LOADING"
+            status: "LOADING",
+            numberOfGuests: this.props.model.getNumberOfGuests()
         };
         this.id = props.dishId;
     }
@@ -18,7 +19,7 @@ class DetailsIngredients extends Component {
                 this.setState({
                     status: "LOADED",
                     dish: dish,
-                    nrPeople: modelInstance.getNumberOfGuests()
+                    numberOfGuests: modelInstance.getNumberOfGuests()
                 });
             })
             .catch(() => {
@@ -26,17 +27,28 @@ class DetailsIngredients extends Component {
                     status: "ERROR"
                 });
             });
+        this.props.model.addObserver(this);
+    }
+
+    componentWillUnmount() {
+        this.props.model.removeObserver(this);
+    }
+
+    update() {
+        this.setState({
+            numberOfGuests: this.props.model.getNumberOfGuests()
+        });
     }
 
     createIngredientsList () {
         let tableBody = this.state.dish.extendedIngredients.map(ingredient =>
             (<tr>
-                <td>{ingredient.amount * this.state.nrPeople} {ingredient.unit}</td>
+                <td>{ingredient.amount * this.state.numberOfGuests} {ingredient.unit}</td>
                 <td>{ingredient.name}</td>
             </tr>));
 
         return (<div>
-                <h3> Ingredients for {this.state.nrPeople} people</h3>
+                <h3> Ingredients for {this.state.numberOfGuests} people</h3>
                 <table className = "table" >
                     <tbody>
                     {tableBody}
