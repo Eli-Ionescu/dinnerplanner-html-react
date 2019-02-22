@@ -9,9 +9,6 @@ import modelInstance from "../data/DinnerModel";
 class DishDetails extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            status: "LOADING"
-        };
         this.id = props.match.params.id;
     }
 

@@ -5,12 +5,6 @@ import TopBar from "../TopBar/TopBar";
 import modelInstance from "../data/DinnerModel";
 
 class DinnerOverview extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
-
     render() {
         return (
             <div className="DishOverview">

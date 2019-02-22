@@ -65,23 +65,19 @@ class DinnerModel extends ObservableModel {
   }
 
   addDishToMenu(id) {
-    console.log(id);
     this.getDish(id).then(dish => {
         this._selectedDishes.push(dish);
         this.notifyObservers("addDishToMenu");
     }).catch(error => {
-        console.log(error);
+        console.error(error);
     });
   }
 
   getTotalMenuPrice() {
     let total = 0;
-
     for (let dish of this._selectedDishes) {
-      console.log(dish.pricePerServing);
       total += dish.pricePerServing;
     }
-
     return total * this._numberOfGuests;
   }
 
@@ -91,8 +87,6 @@ class DinnerModel extends ObservableModel {
     }
     throw response;
   }
-
-
 }
 
 const dishTypes = ["main course", "side dish", "dessert", "appetizer", "salad", "bread",

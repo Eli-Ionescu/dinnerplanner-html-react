@@ -11,8 +11,8 @@ class   Dishes extends Component {
     // e.g. API data loading or error
     this.state = {
       status: "LOADING",
-      type: props.type,
-      filter: props.filter,
+      // type: props.type,
+      // filter: props.filter,
     };
   }
 
@@ -23,14 +23,14 @@ class   Dishes extends Component {
     // when data is retrieved we update the state
     // this will cause the component to re-render
     modelInstance
-      .getAllDishes(this.state.type, this.state.filter)
+      .getAllDishes(this.props.type, this.props.filter)
       .then(dishes => {
         this.setState({
           status: "LOADED",
           dishes: dishes.results,
           uri: dishes.baseUri,
-          type: this.props.type,
-          filter: this.props.filter,
+          // type: this.props.type,
+          // filter: this.props.filter,
         });
       })
         .catch(() => {
@@ -42,7 +42,6 @@ class   Dishes extends Component {
 
   render() {
     let dishesList = null;
-    console.log(this.props);
 
     let dishes = this.props.dishes.length !== 0 ? this.props.dishes : this.state.dishes;
 

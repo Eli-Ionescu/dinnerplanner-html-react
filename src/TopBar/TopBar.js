@@ -26,7 +26,6 @@ class TopBar extends Component {
     }
 
     render() {
-        console.log(this.state.routePath);
         return (
             <div className="TopBar">
                 <div className="row">

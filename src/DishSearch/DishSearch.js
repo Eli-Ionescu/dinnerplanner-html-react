@@ -44,7 +44,6 @@ class DishSearch extends Component {
         ));
         let type = this.state.type;
         let filter = this.state.filter;
-        console.info(this.state);
         return (
             <div className="DishSearch">
                 <div id="searchBar">

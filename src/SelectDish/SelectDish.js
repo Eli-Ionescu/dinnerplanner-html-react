@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Sidebar from "../Sidebar/Sidebar";
-import Dishes from "../Dishes/Dishes";
 import DishSearch from "../DishSearch/DishSearch"
 
 class SelectDish extends Component {
