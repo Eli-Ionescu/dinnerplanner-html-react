@@ -6,10 +6,10 @@ import modelInstance from "../data/DinnerModel";
 class Sidebar extends Component {
     constructor(props) {
         super(props);
-
         // we put on state the properties we want to use and modify in the component
         this.state = {
-            numberOfGuests: this.props.model.getNumberOfGuests()
+            numberOfGuests: this.props.model.getNumberOfGuests(),
+            localStorage: window.localStorage
         };
     }
 
@@ -30,8 +30,9 @@ class Sidebar extends Component {
     // cause the component to re-render
     update() {
         this.setState({
-            numberOfGuests: this.props.model.getNumberOfGuests()
+            numberOfGuests: this.props.model.getNumberOfGuests(),
         });
+        this.state.localStorage.setItem("numberOfGuests", this.props.model.getNumberOfGuests());
     }
 
     // our handler for the input's on change event
@@ -43,7 +44,7 @@ class Sidebar extends Component {
         let selectedDishes = modelInstance.getSelectedDishes().map(dish => (
             <tr>
                 <td>{dish.title}</td>
-                <td>{this.state.numberOfGuests * dish.pricePerServing}</td>
+                <td>{Math.round(this.state.localStorage.getItem("numberOfGuests") * dish.pricePerServing)}</td>
             </tr>
         ));
         return (
@@ -58,7 +59,7 @@ class Sidebar extends Component {
                     <label htmlFor="numberPeople" className="people">People: </label>
                     <input
                         type="number"
-                        value={this.state.numberOfGuests}
+                        value={this.state.localStorage.getItem("numberOfGuests")}
                         onChange={this.onNumberOfGuestsChanged}
                     />
                     <table className="table">
@@ -72,7 +73,7 @@ class Sidebar extends Component {
                         {selectedDishes}
                         </tbody>
                     </table>
-                    <p id="totalPrice"></p>
+                    <p id="totalPrice"> Total: {this.props.model.getTotalMenuPrice()} SEK</p>
                     <Link to="/dishOverview">
                         <button align="middle" className="button" id="confirmDinner">Confirm Dinner</button>
                     </Link>
@@ -82,7 +83,4 @@ class Sidebar extends Component {
         );
     }
 }
-
-
-
 export default Sidebar;

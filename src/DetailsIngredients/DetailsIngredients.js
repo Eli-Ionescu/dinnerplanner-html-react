@@ -7,7 +7,8 @@ class DetailsIngredients extends Component {
         super(props);
         this.state = {
             status: "LOADING",
-            numberOfGuests: this.props.model.getNumberOfGuests()
+            numberOfGuests: this.props.model.getNumberOfGuests(),
+            localStorage: window.localStorage
         };
         this.id = props.dishId;
     }
@@ -41,19 +42,22 @@ class DetailsIngredients extends Component {
     }
 
     createIngredientsList () {
+
         let tableBody = this.state.dish.extendedIngredients.map(ingredient =>
             (<tr>
-                <td>{ingredient.amount * this.state.numberOfGuests} {ingredient.unit}</td>
+                <td>{ingredient.amount * this.state.localStorage.getItem("numberOfGuests")} {ingredient.unit}</td>
                 <td>{ingredient.name}</td>
             </tr>));
 
+
         return (<div>
-                <h3> Ingredients for {this.state.numberOfGuests} people</h3>
+                <h3> Ingredients for {this.state.localStorage.getItem("numberOfGuests")} people</h3>
                 <table className = "table" >
                     <tbody>
                     {tableBody}
                     </tbody>
                 </table>
+                <p align="right">Total: {Math.round(this.state.dish.pricePerServing * this.state.localStorage.getItem("numberOfGuests"))} SEK </p>
             </div>
         );
     }

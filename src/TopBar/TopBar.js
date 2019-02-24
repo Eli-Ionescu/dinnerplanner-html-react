@@ -7,7 +7,8 @@ class TopBar extends Component {
         super(props);
         this.state = {
             numberOfGuests: this.props.model.getNumberOfGuests(),
-            routePath: this.props.routePath
+            routePath: this.props.routePath,
+            localStorage: window.localStorage
         };
     }
 
@@ -26,12 +27,12 @@ class TopBar extends Component {
     }
 
     render() {
-        console.log(this.state.routePath);
+        console.log(this.state.localStorage.getItem("numberOfGuests"));
         return (
             <div className="TopBar">
                 <div className="row">
                     <h3 className="text-left col-md-6" id="numberPeopleOverview">
-                        My Dinner: {this.state.numberOfGuests} people
+                        My Dinner: {this.state.localStorage.getItem("numberOfGuests")} people
                     </h3>
                     <div className="text-right col-md-6">
                         <Link to={this.state.routePath}>
@@ -45,5 +46,4 @@ class TopBar extends Component {
         );
     }
 }
-
 export default TopBar;

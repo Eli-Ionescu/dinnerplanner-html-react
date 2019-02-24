@@ -3,87 +3,85 @@ import API_KEY from "./apiKey";
 
 const BASE_URL = "http://sunset.nada.kth.se:8080/iprog/group/45";
 const httpOptions = {
-  headers: { "X-Mashape-Key": API_KEY }
+    headers: { "X-Mashape-Key": API_KEY }
 };
 
 class DinnerModel extends ObservableModel {
-  constructor() {
-    super();
-    this._numberOfGuests = 4;
-    this.getNumberOfGuests();
+    constructor() {
+        super();
+        this._numberOfGuests = 5;
+        this.getNumberOfGuests();
 
-    this._selectedDishes = [];
-    this.getSelectedDishes();
-  }
-
-  /**
-   * Get the number of guests
-   * @returns {number}
-   */
-  getNumberOfGuests() {
-    return this._numberOfGuests;
-  }
-
-  /**
-   * Set number of guests
-   * @param {number} num
-   */
-  setNumberOfGuests(num) {
-    this._numberOfGuests = num;
-    this.notifyObservers();
-  }
-
-  // API methods
-
-  /**
-   * Do an API call to the search API endpoint.
-   * @returns {Promise<any>}
-   */
-  getAllDishes() {
-    const url = `${BASE_URL}/recipes/search?number=30`;
-    return fetch(url, httpOptions).then(this.processResponse);
-  }
-
-  getAllDishTypes() {
-    return dishTypes;
-  }
-
-  getDish(id) {
-    const url = `${BASE_URL}/recipes/${id}/information`;
-    return fetch(url, httpOptions).then(this.processResponse);
-  }
-
-  getSelectedDishes() {
-      return this._selectedDishes;
-  }
-
-  addDishToMenu(id) {
-    console.log(id);
-    this.getDish(id).then(dish => {
-        this._selectedDishes.push(dish);
-        this.notifyObservers("addDishToMenu");
-    }).catch(error => {
-        console.log(error);
-    });
-  }
-
-  getTotalMenuPrice() {
-    let total = 0;
-
-    for (let dish of this._selectedDishes) {
-      console.log(dish.pricePerServing);
-      total += dish.pricePerServing;
+        this._selectedDishes = [];
+        this.getSelectedDishes();
     }
 
-    return total * this._numberOfGuests;
-  }
-
-  processResponse(response) {
-    if (response.ok) {
-      return response.json();
+    /**
+     * Get the number of guests
+     * @returns {number}
+     */
+    getNumberOfGuests() {
+        return this._numberOfGuests;
     }
-    throw response;
-  }
+
+    /**
+     * Set number of guests
+     * @param {number} num
+     */
+    setNumberOfGuests(num) {
+        this._numberOfGuests = num;
+        this.notifyObservers();
+    }
+
+    // API methods
+
+    /**
+     * Do an API call to the search API endpoint.
+     * @returns {Promise<any>}
+     */
+    getAllDishes() {
+        const url = `${BASE_URL}/recipes/search?number=30`;
+        return fetch(url, httpOptions).then(this.processResponse);
+    }
+
+    getAllDishTypes() {
+        return dishTypes;
+    }
+
+    getDish(id) {
+        const url = `${BASE_URL}/recipes/${id}/information`;
+        return fetch(url, httpOptions).then(this.processResponse);
+    }
+
+    getSelectedDishes() {
+        return this._selectedDishes;
+    }
+
+    addDishToMenu(id) {
+        this.getDish(id).then(dish => {
+            this._selectedDishes.push(dish);
+            this.notifyObservers("addDishToMenu");
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
+    getTotalMenuPrice() {
+        let total = 0;
+
+        for (let dish of this._selectedDishes) {
+            total += dish.pricePerServing;
+        }
+
+        return Math.round(total * this._numberOfGuests);
+    }
+
+    processResponse(response) {
+        if (response.ok) {
+            return response.json();
+        }
+        throw response;
+    }
 
 
 }
