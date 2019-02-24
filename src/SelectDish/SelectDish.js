@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Sidebar from "../Sidebar/Sidebar";
-import Dishes from "../Dishes/Dishes";
 import DishSearch from "../DishSearch/DishSearch"
 
 class SelectDish extends Component {
@@ -15,7 +14,6 @@ class SelectDish extends Component {
                 </div>
                 <div className="col-md-9">
                     <DishSearch />
-                    <Dishes />
                 </div>
               </div>
           </div>

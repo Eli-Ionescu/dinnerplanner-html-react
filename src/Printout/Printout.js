@@ -13,7 +13,7 @@ class Printout extends Component {
         let dishesPrintout = modelInstance.getSelectedDishes().map(dish => (
             <div id="dinnerItem" className="row">
                 <div className="col-md-2" id="imageContainer">
-                    <img className="img-thumbnail" src={dish.image}/>
+                    <img className="img-thumbnail" src={dish.image} alt={dish.title}/>
                 </div>
                 <div className="col-md-4" id="description">
                     <h2>{dish.title}</h2>

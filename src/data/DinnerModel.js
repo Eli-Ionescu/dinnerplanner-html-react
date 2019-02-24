@@ -3,14 +3,14 @@ import API_KEY from "./apiKey";
 
 const BASE_URL = "http://sunset.nada.kth.se:8080/iprog/group/45";
 const httpOptions = {
-    headers: { "X-Mashape-Key": API_KEY }
+  headers: { "X-Mashape-Key": API_KEY }
 };
 
 class DinnerModel extends ObservableModel {
-    constructor() {
-        super();
-        this._numberOfGuests = 5;
-        this.getNumberOfGuests();
+  constructor() {
+    super();
+    this._numberOfGuests = 4;
+    this.getNumberOfGuests();
 
         this._selectedDishes = [];
         this.getSelectedDishes();
@@ -33,16 +33,23 @@ class DinnerModel extends ObservableModel {
         this.notifyObservers();
     }
 
-    // API methods
+  // API methods
 
-    /**
-     * Do an API call to the search API endpoint.
-     * @returns {Promise<any>}
-     */
-    getAllDishes() {
-        const url = `${BASE_URL}/recipes/search?number=30`;
-        return fetch(url, httpOptions).then(this.processResponse);
+  /**
+   * Do an API call to the search API endpoint.
+   * @returns {Promise<any>}
+   */
+  getAllDishes(type, filter) {
+    let searchUrl = "";
+    if ((!type || type === "All") && !filter) {
+        searchUrl =`${BASE_URL}/recipes/search?number=30`;
+    } else {
+        searchUrl = `${BASE_URL}/recipes/search?number=30` +
+            (type ? `&type=${type}` : "") +
+            (filter ? `&query=${filter}` : "");
     }
+    return fetch(searchUrl, httpOptions).then(this.processResponse);
+  }
 
     getAllDishTypes() {
         return dishTypes;
@@ -57,33 +64,29 @@ class DinnerModel extends ObservableModel {
         return this._selectedDishes;
     }
 
-    addDishToMenu(id) {
-        this.getDish(id).then(dish => {
-            this._selectedDishes.push(dish);
-            this.notifyObservers("addDishToMenu");
-        }).catch(error => {
-            console.log(error);
-        });
+  addDishToMenu(id) {
+    this.getDish(id).then(dish => {
+        this._selectedDishes.push(dish);
+        this.notifyObservers("addDishToMenu");
+    }).catch(error => {
+        console.error(error);
+    });
+  }
+
+  getTotalMenuPrice() {
+    let total = 0;
+    for (let dish of this._selectedDishes) {
+      total += dish.pricePerServing;
     }
+    return total * this._numberOfGuests;
+  }
 
-    getTotalMenuPrice() {
-        let total = 0;
-
-        for (let dish of this._selectedDishes) {
-            total += dish.pricePerServing;
-        }
-
-        return Math.round(total * this._numberOfGuests);
+  processResponse(response) {
+    if (response.ok) {
+      return response.json();
     }
-
-    processResponse(response) {
-        if (response.ok) {
-            return response.json();
-        }
-        throw response;
-    }
-
-
+    throw response;
+  }
 }
 
 const dishTypes = ["main course", "side dish", "dessert", "appetizer", "salad", "bread",

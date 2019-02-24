@@ -9,16 +9,13 @@ import modelInstance from "../data/DinnerModel";
 class DishDetails extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            status: "LOADING"
-        };
         this.id = props.match.params.id;
     }
 
     // Has to be arrow function for binding
     addDishToMenu = () => {
         modelInstance.addDishToMenu(this.id);
-    }
+    };
 
     render() {
         return (
