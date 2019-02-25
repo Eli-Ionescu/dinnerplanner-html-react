@@ -78,7 +78,7 @@ class DinnerModel extends ObservableModel {
     for (let dish of this._selectedDishes) {
       total += dish.pricePerServing;
     }
-    return total * this._numberOfGuests;
+    return Math.round(total * this._numberOfGuests);
   }
 
   processResponse(response) {
