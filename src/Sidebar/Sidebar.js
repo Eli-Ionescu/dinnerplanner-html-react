@@ -8,10 +8,9 @@ class Sidebar extends Component {
         super(props);
         // we put on state the properties we want to use and modify in the component
         this.state = {
-            numberOfGuests: this.props.model.getNumberOfGuests()
+            numberOfGuests: this.props.model.getNumberOfGuests(),
+            localStorage: window.localStorage
         };
-
-        this.localStorage = window.localStorage;
     }
 
     // this methods is called by React lifecycle when the
@@ -33,7 +32,8 @@ class Sidebar extends Component {
         this.setState({
             numberOfGuests: this.props.model.getNumberOfGuests(),
         });
-        this.localStorage.setItem("numberOfGuests", this.props.model.getNumberOfGuests());
+        this.state.localStorage.setItem("numberOfGuests", this.props.model.getNumberOfGuests());
+        this.state.localStorage.setItem("selectedDishes", JSON.stringify(modelInstance.getSelectedDishes()));
     }
 
     // our handler for the input's on change event
@@ -42,13 +42,25 @@ class Sidebar extends Component {
     };
 
     render() {
+        let selectedDishesList = this.state.localStorage.getItem("selectedDishes") ?
+            JSON.parse(this.state.localStorage.getItem("selectedDishes")) :
+            modelInstance.getSelectedDishes();
 
-        let selectedDishes = modelInstance.getSelectedDishes().map(dish => (
-            <tr>
+        let numberOfGuests = this.state.localStorage.getItem("numberOfGuests") ?
+            this.state.localStorage.getItem("numberOfGuests") :
+            modelInstance.getNumberOfGuests();
+
+        let selectedDishes = selectedDishesList.map((dish, i) => (
+            <tr key={i}>
                 <td>{dish.title}</td>
-                <td>{Math.round(this.localStorage.getItem("numberOfGuests") * dish.pricePerServing)}</td>
+                <td>{Math.round(numberOfGuests * dish.pricePerServing)}</td>
             </tr>
         ));
+
+        let totalPrice = 0;
+        for (let i = 0; i < selectedDishesList.length; i++){
+            totalPrice += selectedDishesList[i].pricePerServing;
+        }
 
         return (
             <div className="Sidebar">
@@ -62,7 +74,7 @@ class Sidebar extends Component {
                     <label htmlFor="numberPeople" className="people">People: </label>
                     <input
                         type="number"
-                        value={this.localStorage.getItem("numberOfGuests")}
+                        value={numberOfGuests}
                         onChange={this.onNumberOfGuestsChanged}
                     />
                     <table className="table">
@@ -73,13 +85,14 @@ class Sidebar extends Component {
                         </tr>
                         </thead>
                         <tbody id="selectedDishTableBody">
-                            {selectedDishes}
+                        {selectedDishes}
                         </tbody>
                     </table>
-                    <p id="totalPrice"> Total: {Math.round(this.props.model.getTotalMenuPrice())} SEK</p>
+                    <p id="totalPrice"> Total: {Math.round(totalPrice * numberOfGuests)} SEK</p>
                     <Link to="/dishOverview">
                         <button align="middle" className="button" id="confirmDinner">Confirm Dinner</button>
                     </Link>
+
                 </div>
             </div>
         );

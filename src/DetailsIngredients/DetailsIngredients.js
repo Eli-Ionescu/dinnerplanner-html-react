@@ -42,22 +42,25 @@ class DetailsIngredients extends Component {
     }
 
     createIngredientsList () {
+        let nrGuests = this.state.localStorage.getItem("numberOfGuests") ?
+            this.state.localStorage.getItem("numberOfGuests") :
+            modelInstance.getNumberOfGuests();
 
-        let tableBody = this.state.dish.extendedIngredients.map(ingredient =>
-            (<tr>
-                <td>{ingredient.amount * this.state.localStorage.getItem("numberOfGuests")} {ingredient.unit}</td>
+        let tableBody = this.state.dish.extendedIngredients.map((ingredient, i) =>
+            (<tr key={i}>
+                <td>{ingredient.amount * nrGuests} {ingredient.unit}</td>
                 <td>{ingredient.name}</td>
             </tr>));
 
 
         return (<div>
-                <h3> Ingredients for {this.state.localStorage.getItem("numberOfGuests")} people</h3>
+                <h3> Ingredients for {nrGuests} people</h3>
                 <table className = "table" >
                     <tbody>
                     {tableBody}
                     </tbody>
                 </table>
-                <p align="right">Total: {Math.round(this.state.dish.pricePerServing * this.state.localStorage.getItem("numberOfGuests"))} SEK </p>
+                <p align="right">Total: {Math.round(this.state.dish.pricePerServing * nrGuests)} SEK </p>
             </div>
         );
     }

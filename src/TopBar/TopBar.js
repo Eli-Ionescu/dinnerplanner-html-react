@@ -27,7 +27,6 @@ class TopBar extends Component {
     }
 
     render() {
-        console.log(this.state.localStorage.getItem("numberOfGuests"));
         return (
             <div className="TopBar">
                 <div className="row">

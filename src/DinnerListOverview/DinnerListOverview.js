@@ -3,8 +3,25 @@ import modelInstance from "../data/DinnerModel";
 import "./DinnerListOverview.css"
 
 class DinnerListOverview extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedDishes: modelInstance.getSelectedDishes(),
+            localStorage: window.localStorage
+        }
+    }
+    update() {
+        this.setState({
+            selectedDishes: modelInstance.getSelectedDishes(),
+        });
+        this.state.localStorage.setItem("selectedDishes", JSON.stringify(modelInstance.getSelectedDishes()));
+    }
+
     render() {
-        let selectedDishes = modelInstance.getSelectedDishes().map(dish => (
+        let selectedDishesList = this.state.localStorage.getItem("selectedDishes") ?
+            JSON.parse(this.state.localStorage.getItem("selectedDishes")) :
+            modelInstance.getSelectedDishes();
+        let selectedDishes = selectedDishesList.map(dish => (
             <div className="col-md-3">
                 <div>
                     <img className="img-thumbnail" src={dish.image} alt={dish.title}/>
