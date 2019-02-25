@@ -29,11 +29,12 @@ class Sidebar extends Component {
     // in our update function we modify the state which will
     // cause the component to re-render
     update() {
-        this.setState({
-            numberOfGuests: this.props.model.getNumberOfGuests(),
-        });
         this.state.localStorage.setItem("numberOfGuests", this.props.model.getNumberOfGuests());
         this.state.localStorage.setItem("selectedDishes", JSON.stringify(modelInstance.getSelectedDishes()));
+        this.setState({
+            numberOfGuests: this.props.model.getNumberOfGuests(),
+            selectedDishes: modelInstance.getSelectedDishes(),
+        });
     }
 
     // our handler for the input's on change event
@@ -42,13 +43,14 @@ class Sidebar extends Component {
     };
 
     render() {
-        let selectedDishesList = this.state.localStorage.getItem("selectedDishes") ?
-            JSON.parse(this.state.localStorage.getItem("selectedDishes")) :
-            modelInstance.getSelectedDishes();
-
         let numberOfGuests = this.state.localStorage.getItem("numberOfGuests") ?
             this.state.localStorage.getItem("numberOfGuests") :
             modelInstance.getNumberOfGuests();
+
+        let selectedDishesList = this.state.localStorage.getItem("selectedDishes") ?
+            JSON.parse(this.state.localStorage.getItem("selectedDishes")) :
+            modelInstance.getSelectedDishes();
+        console.log(selectedDishesList);
 
         let selectedDishes = selectedDishesList.map((dish, i) => (
             <tr key={i}>

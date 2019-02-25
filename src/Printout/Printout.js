@@ -12,18 +12,18 @@ class Printout extends Component {
     }
 
     update() {
+        this.state.localStorage.setItem("selectedDishes", JSON.stringify(modelInstance.getSelectedDishes()));
         this.setState({
             selectedDishes: modelInstance.getSelectedDishes(),
         });
-        this.state.localStorage.setItem("selectedDishes", JSON.stringify(modelInstance.getSelectedDishes()));
     }
 
     render() {
         let selectedDishesList = this.state.localStorage.getItem("selectedDishes") ?
             JSON.parse(this.state.localStorage.getItem("selectedDishes")) :
             modelInstance.getSelectedDishes();
-        let dishesPrintout = selectedDishesList.map(dish => (
-            <div id="dinnerItem" className="row">
+        let dishesPrintout = selectedDishesList.map((dish, i) => (
+            <div id="dinnerItem" className="row" key={i}>
                 <div className="col-md-2" id="imageContainer">
                     <img className="img-thumbnail" src={dish.image} alt={dish.title}/>
                 </div>

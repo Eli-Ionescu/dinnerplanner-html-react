@@ -11,18 +11,18 @@ class DinnerListOverview extends Component {
         }
     }
     update() {
+        this.state.localStorage.setItem("selectedDishes", JSON.stringify(modelInstance.getSelectedDishes()));
         this.setState({
             selectedDishes: modelInstance.getSelectedDishes(),
         });
-        this.state.localStorage.setItem("selectedDishes", JSON.stringify(modelInstance.getSelectedDishes()));
     }
 
     render() {
         let selectedDishesList = this.state.localStorage.getItem("selectedDishes") ?
             JSON.parse(this.state.localStorage.getItem("selectedDishes")) :
             modelInstance.getSelectedDishes();
-        let selectedDishes = selectedDishesList.map(dish => (
-            <div className="col-md-3">
+        let selectedDishes = selectedDishesList.map((dish, i) => (
+            <div className="col-md-3" key={i}>
                 <div>
                     <img className="img-thumbnail" src={dish.image} alt={dish.title}/>
                     <div className="caption" id="captionOverview">
