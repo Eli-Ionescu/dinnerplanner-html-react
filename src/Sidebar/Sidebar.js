@@ -50,7 +50,6 @@ class Sidebar extends Component {
         let selectedDishesList = this.state.localStorage.getItem("selectedDishes") ?
             JSON.parse(this.state.localStorage.getItem("selectedDishes")) :
             modelInstance.getSelectedDishes();
-        console.log(selectedDishesList);
 
         let selectedDishes = selectedDishesList.map((dish, i) => (
             <tr key={i}>
