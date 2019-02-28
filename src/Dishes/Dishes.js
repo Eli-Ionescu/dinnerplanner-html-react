@@ -4,15 +4,13 @@ import React, { Component } from "react";
 import modelInstance from "../data/DinnerModel";
 import Link from "react-router-dom/es/Link";
 
-class   Dishes extends Component {
+class Dishes extends Component {
   constructor(props) {
     super(props);
     // We create the state to store the various statuses
     // e.g. API data loading or error
     this.state = {
       status: "LOADING",
-      // type: props.type,
-      // filter: props.filter,
     };
   }
 
@@ -29,8 +27,6 @@ class   Dishes extends Component {
           status: "LOADED",
           dishes: dishes.results,
           uri: dishes.baseUri,
-          // type: this.props.type,
-          // filter: this.props.filter,
         });
       })
         .catch(() => {
@@ -43,9 +39,7 @@ class   Dishes extends Component {
   render() {
     let dishesList = null;
 
-    let dishes = this.props.dishes.length !== 0 ? this.props.dishes : this.state.dishes;
-
-      // depending on the state we either generate
+    // depending on the state we either generate
     // useful message to the user or show the list
     // of returned dishes
     switch (this.state.status) {
@@ -53,7 +47,7 @@ class   Dishes extends Component {
         dishesList = <em>Loading...</em>;
         break;
       case "LOADED":
-        dishesList = dishes.map(dish => (
+        dishesList = this.state.dishes.map(dish => (
           <div key={dish.id} className="col-md-2 dishItem">
               <Link  to={"/details/" + dish.id}>
                   <img className="img-thumbnail" src={this.state.uri + dish.image} alt={dish.title}/>

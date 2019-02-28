@@ -58,7 +58,7 @@ class DishSearch extends Component {
                     <hr/>
                 </div>
                 {/*Trigger state change*/}
-                <Dishes type={type} filter={filter} dishes={this.state.dishes}/>
+                <Dishes type={type} filter={filter}/>
             </div>
         );
     }
